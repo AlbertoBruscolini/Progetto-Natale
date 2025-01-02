@@ -31,3 +31,9 @@ source .venv/bin/activate
 ```bash
 pip install -r requirements.txt
 ```
+
+# Autore
+-    Nome Cognome - alberto.bruscolini@studenti.isissgobetti.it
+
+#Licenza
+Questo progetto è distribuito sotto la licenza MIT. Vedi il file LICENSE per ulteriori dettagli.
