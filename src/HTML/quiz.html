@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+        }
+        h1 {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+        }
+        .question-number {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .options {
+            text-align: center;
+        }
+        .options label {
+            display: block;
+            margin: 5px 0;
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        .timer {
+            font-size: 1.5em;
+            color: #ff0000;
+            margin-bottom: 20px;
+        }
+    </style>
+    <script>
+        let timeLeft = 20;
+        function startTimer() {
+            const timerElement = document.getElementById('timer');
+            const interval = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(interval);
+                    document.getElementById('quiz-form').submit();
+                } else {
+                    timerElement.textContent = `Tempo rimasto: ${timeLeft} secondi`;
+                    timeLeft--;
+                }
+            }, 1000);
+        }
+        window.onload = startTimer;
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz</h1>
+        <div class="question-number">Domanda {{ question_number }} di {{ total_questions }}</div>
+        <div class="timer" id="timer">Tempo rimasto: 20 secondi</div>
+        <div class="question">
+            <p>{{ question['question'] }}</p>
+        </div>
+        <form method="post" id="quiz-form">
+            <div class="options">
+                {% for option in question['options'] %}
+                    <label>
+                        <input type="radio" name="answer" value="{{ option.split('.')[0] }}"> {{ option }}
+                    </label>
+                {% endfor %}
+            </div>
+            <button type="submit" class="submit-btn">Invia</button>
+        </form>
+    </div>
+</body>
+</html>
