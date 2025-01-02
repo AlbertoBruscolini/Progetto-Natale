@@ -16,4 +16,18 @@ pip install -r requirements.txt
 
 ```bash
 python src/main.py
+```
+# Set Up Base
 
+## Creare Ambiente Virtuale
+```bash
+python -m venv .venv
+```
+## Attivare Ambiente Virtuale
+```bash
+source .venv/bin/activate
+```
+## Installare dipendenze
+```bash
+pip install -r requirements.txt
+```
