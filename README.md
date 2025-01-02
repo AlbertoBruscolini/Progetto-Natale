@@ -14,6 +14,6 @@ pip install -r requirements.txt
 
 ## Esempi di utilizzo
 
-'''bash
+```bash
 python src/main.py
 
