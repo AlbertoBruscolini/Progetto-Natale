@@ -10,3 +10,10 @@ Seguire i passaggi per configurare l'ambiente di sviluppo:
 python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+```
+
+## Esempi di utilizzo
+
+'''bash
+python src/main.py
+```
