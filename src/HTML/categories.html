@@ -4,9 +4,18 @@
     <meta charset="UTF-8">
     <title>Seleziona una Categoria</title>
     <style>
+        h1 {
+            font-size: 3em; 
+            font-weight: bold;
+            color: rgb(179, 174, 174); 
+            margin-bottom: 20px;
+            background-color: rgba(229, 193, 193, 0.451); 
+            padding: 10px;
+            border-radius: 10px;
+        }
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f8ff;
+            background-image: url('https://cdn-0001.qstv.on.epicgames.com/HCBTScOJUCnIiQVrEV/image/landscape_comp.jpeg');
             margin: 0;
             padding: 0;
             display: flex;
@@ -17,8 +26,8 @@
             text-align: center;
         }
         .container {
-            background-color: #fff;
-            padding: 20px;
+            
+            padding: 100px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 80%;
@@ -37,16 +46,17 @@
             align-items: center;
             gap: 20px;
         }
+        
         .category-btn {
             display: block;
-            width: 300px;
-            height: 300px;
-            background-color: #4CAF50;
-            color: white;
+            width: 800px; /* Raddoppia la larghezza */
+            height: 300px; /* Raddoppia l'altezza */
+            
+            color: rgb(255, 255, 255);
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 30px;
             margin: 10px;
             text-decoration: none;
             display: flex;
@@ -54,15 +64,18 @@
             justify-content: center;
             align-items: center;
             text-align: center;
+            background-color: rgba(0, 0, 0, 0.525); /* Contorno trasparente */
+            padding: 10px;
         }
         .category-btn img {
-            width: 80px;
-            height: 80px;
+            width: 200px; /* Raddoppia la larghezza dell'immagine */
+            height: 200px; /* Raddoppia l'altezza dell'immagine */
             margin-bottom: 10px;
         }
         .category-btn:hover {
-            background-color: #45a049;
+            background-color: #000000;
         }
+</style>
     </style>
 </head>
 <body>
