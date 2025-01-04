@@ -6,7 +6,6 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f8ff;
             margin: 0;
             padding: 0;
             display: flex;
@@ -14,90 +13,112 @@
             align-items: center;
             height: 100vh;
             text-align: center;
+            position: relative; /* Aggiungi questa linea per posizionare il timer in basso a destra */
+            background-size: cover;
+            background-position: center;
+            {% if category == 'capitali' %}
+                background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMbgiN_4F07oCUltqMDAycQqwuSJ8wALXoeecf5iOf2Zz47W3QIz5TjHUtkPf780ODLQo&usqp=CAU');
+            {% elif category == 'sport' %}
+                background-image: url('https://cdn-0001.qstv.on.epicgames.com/yJWidesgZNNvVbQKAI/image/landscape_comp.jpeg');
+            {% elif category == 'storia' %}
+                background-image: url('https://i.abcnewsfe.com/a/8a3ec9b6-b647-40cc-941d-e1821bc19391/GMA_Main_GenAlpha_Slang_v01_sd_1732116432375_hpMain_16x9.jpg?w=1600');
+            {% else %}
+                background-color: #f0f8ff;
+            {% endif %}
         }
         .container {
-            background-color: #fff;
+            background-color: #ffffffc8;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 80%;
             max-width: 600px;
+            position: relative; /* Aggiungi questa linea per posizionare il timer */
         }
         h1 {
             font-size: 2em;
             font-weight: bold;
             color: #333;
         }
-        .question-number {
-            font-size: 1.2em;
-            color: #666;
-            margin-bottom: 10px;
-        }
         .question {
-            margin-bottom: 20px;
+            font-size: 1.2em;
+            color: #000; /* Rendi il testo della domanda nero */
         }
         .options {
-            text-align: center;
+            list-style-type: none;
+            padding: 0;
         }
-        .options label {
-            display: block;
-            margin: 5px 0;
+        .options li {
+            margin-bottom: 10px;
         }
         .submit-btn {
             display: block;
-            width: 100%;
+            width: 20%;
             padding: 10px;
-            background-color: #4CAF50;
-            color: white;
+            background-color: #ed0000;
+            color: rgb(255, 255, 255);
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+            margin-top: 20px;
+            text-decoration: none;
+            margin-left: auto; /* Aggiungi questa linea per centrare il pulsante */
+            margin-right: auto; /* Aggiungi questa linea per centrare il pulsante */
         }
         .submit-btn:hover {
-            background-color: #45a049;
+            background-color: #760404;
+        }
+        .question-number {
+            font-size: 1em;
+            color: #333;
+            margin-bottom: 20px;
         }
         .timer {
-            font-size: 1.5em;
-            color: #ff0000;
-            margin-bottom: 20px;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 1.2em; /* Aumenta la grandezza del timer */
+            color: red; /* Rendi il timer rosso */
         }
     </style>
     <script>
-        let timeLeft = 20;
-        function startTimer() {
+        document.addEventListener('DOMContentLoaded', (event) => {
+            let timeLeft = 20;
             const timerElement = document.getElementById('timer');
-            const interval = setInterval(() => {
+            const timerInterval = setInterval(() => {
                 if (timeLeft <= 0) {
-                    clearInterval(interval);
-                    document.getElementById('quiz-form').submit();
+                    clearInterval(timerInterval);
+                    // Segna la risposta come errata e passa alla prossima domanda
+                    document.querySelector('form').submit();
                 } else {
                     timerElement.textContent = `Tempo rimasto: ${timeLeft} secondi`;
                     timeLeft--;
                 }
             }, 1000);
-        }
-        window.onload = startTimer;
+        });
     </script>
 </head>
 <body>
     <div class="container">
-        <h1>Quiz</h1>
-        <div class="question-number">Domanda {{ question_number }} di {{ total_questions }}</div>
-        <div class="timer" id="timer">Tempo rimasto: 20 secondi</div>
-        <div class="question">
-            <p>{{ question['question'] }}</p>
+        <h1>{{ category }}</h1> <!-- Cambia "Quiz" con il nome della categoria -->
+        <div class="question-number">
+            Domanda {{ question_number }} di {{ total_questions }}
         </div>
-        <form method="post" id="quiz-form">
-            <div class="options">
-                {% for option in question['options'] %}
-                    <label>
-                        <input type="radio" name="answer" value="{{ option.split('.')[0] }}"> {{ option }}
-                    </label>
-                {% endfor %}
+        <form method="post" action="{{ url_for('quiz_question') }}">
+            <div class="question">
+                <p>{{ question['question'] }}</p>
             </div>
+            <ul class="options">
+                {% for option in question['options'] %}
+                    <li>
+                        <input type="radio" name="answer" value="{{ option }}" required> {{ option }}
+                    </li>
+                {% endfor %}
+            </ul>
             <button type="submit" class="submit-btn">Invia</button>
         </form>
+        <div id="timer" class="timer">Tempo rimasto: 20 secondi</div>
     </div>
 </body>
 </html>
