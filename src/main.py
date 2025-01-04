@@ -94,6 +94,7 @@ def quiz(category):
 
     session['current_question'] = 0
     session['score'] = 0
+    session['category'] = category  # Aggiungi la categoria alla sessione
     return redirect(url_for('quiz_question'))
 
 @app.route('/quiz_question', methods=['GET', 'POST'])
@@ -101,8 +102,10 @@ def quiz_question():
     current_question = session.get('current_question', 0)
     if request.method == 'POST':
         answer = request.form.get('answer')
-        if answer and answer == session['questions'][current_question]['answer']:
-            session['score'] += 1
+        if answer:
+            session[f'answer_{current_question}'] = answer
+            if answer == session['questions'][current_question]['answer']:
+                session['score'] += 1
         session['current_question'] += 1
         current_question = session['current_question']
         if current_question >= len(session['questions']):
@@ -111,13 +114,32 @@ def quiz_question():
     question = session['questions'][current_question]
     question_number = current_question + 1
     total_questions = len(session['questions'])
-    return render_template('quiz.html', question=question, q=current_question, question_number=question_number, total_questions=total_questions)
+    category = session.get('category', 'Quiz')  # Ottieni la categoria dalla sessione
+    return render_template('quiz.html', question=question, question_number=question_number, total_questions=total_questions, category=category)
 
 @app.route('/result')
 def result():
+    if 'questions' not in session:
+        return redirect(url_for('start'))
     score = session.get('score', 0)
     total = len(session['questions'])
-    return render_template('result.html', score=score, total=total)
+    results = []
+    for i, question in enumerate(session['questions']):
+        user_answer = session.get(f'answer_{i}', 'N/A')
+        correct_answer = question['answer']
+        results.append((i + 1, question['question'], user_answer, correct_answer))
+    print("Results:", results)  # Aggiungi questa linea per il debugging
+    return render_template('result.html', results=results, score=score, total=total)
+
+@app.route('/check_answers')
+def check_answers():
+    if 'questions' not in session:
+        return redirect(url_for('start'))
+    results = []
+    for i, question in enumerate(session['questions']):
+        correct_answer = question['answer']
+        results.append((question['question'], correct_answer))
+    return render_template('check_answers.html', results=results)
 
 if __name__ == "__main__":
     app.run(debug=True)
