@@ -2,11 +2,10 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Accuracy</title>
+    <title>Risultati</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f8ff;
             margin: 0;
             padding: 0;
             display: flex;
@@ -14,9 +13,12 @@
             align-items: center;
             height: 100vh;
             text-align: center;
+            background-image: url('https://img.buzzfeed.com/buzzfeed-static/static/2024-10/2/15/campaign_images/d697430887fd/if-you-pass-this-brain-rot-quiz-your-brain-is-100-5-1564-1727882562-0_16x9.jpg'); /* URL dell'immagine di sfondo */
+            background-size: cover; /* Copre l'intera area */
+            background-position: center; /* Centra l'immagine */
         }
         .container {
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.8); /* Sfondo semi-trasparente per il contenitore */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -26,17 +28,13 @@
         h1 {
             font-size: 2em;
             font-weight: bold;
-            color: #333;
+            color: #000000;
         }
-        p {
-            font-size: 1.2em;
-            color: #666;
-        }
-        .back-btn {
+        .back-btn, .check-answers-btn {
             display: block;
             width: 100%;
             padding: 10px;
-            background-color: #4CAF50;
+            background-color: #aa4caf;
             color: white;
             border: none;
             border-radius: 5px;
@@ -45,16 +43,17 @@
             margin-top: 20px;
             text-decoration: none;
         }
-        .back-btn:hover {
-            background-color: #45a049;
+        .back-btn:hover, .check-answers-btn:hover {
+            background-color: #582197;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Accuracy</h1>
-        <p>Hai risposto correttamente a {{ score }} domande su {{ total }}.</p>
+        <h1>Risultati</h1>
+        <p><strong>Hai risposto correttamente a {{ score }} domande su {{ total }}.</strong></p> <!-- Modifica in grassetto -->
         <a href="/start" class="back-btn">Torna alla Home</a>
+        <a href="/check_answers" class="check-answers-btn">Mostra le risposte giuste</a> <!-- Aggiungi il pulsante -->
     </div>
 </body>
 </html>
