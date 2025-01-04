@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Risposte Esatte</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://i.scdn.co/image/ab67616d00001e02758e98186cd330b1743b155d');
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column; /* Aggiungi questa linea per posizionare il bottone in basso */
+            justify-content: space-between; /* Aggiungi questa linea per posizionare il bottone in basso */
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            background-color: #ffffffb6;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%; /* Aumenta la larghezza del contenitore */
+            max-width: 800px; /* Aumenta la larghezza massima del contenitore */
+        }
+        h1 {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+        }
+        .answers-list {
+            text-align: left;
+            margin-top: 20px;
+            list-style-type: none;
+            padding: 0;
+        }
+        .answers-list li {
+            margin-bottom: 20px; /* Aggiunge più spazio tra le domande */
+            font-size: 1.1em; /* Ingrandisce di poco il testo */
+        }
+        .back-btn {
+            display: block;
+            width: auto;
+            padding: 12px; /* Ingrandisce di pochissimo il bottone */
+            background-color: #aa4caf;
+            color: rgb(255, 255, 255);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 17px; /* Ingrandisce di pochissimo il testo del bottone */
+            text-decoration: none;
+            position: fixed; /* Posiziona il bottone in modo fisso */
+            bottom: 20px; /* Posiziona il bottone in basso */
+            right: 20px; /* Posiziona il bottone a destra */
+        }
+        .back-btn:hover {
+            background-color: #582197;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Risposte Esatte</h1> <!-- Un solo titolo con scritto "Risposte Esatte" -->
+        <div class="answers-list">
+            <ul>
+                {% for question, correct_answer in results %}
+                    <li>
+                        <strong>{{ question }}</strong><br>
+                        Risposta corretta: {{ correct_answer }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <a href="/start" class="back-btn">Torna alla Home</a> <!-- Sposta il bottone fuori dal contenitore -->
+</body>
+</html>
