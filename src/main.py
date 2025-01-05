@@ -5,72 +5,153 @@ app = Flask(__name__)
 app.secret_key = 'supersecretkey'
 
 questions_capitali = [
-    {"question": "Qual è la capitale d'Italia?", "options": ["A. Milano", "B. Roma", "C. Napoli", "D. Torino"], "answer": "B"},
-    {"question": "Qual è la capitale della Francia?", "options": ["A. Marsiglia", "B. Lione", "C. Parigi", "D. Nizza"], "answer": "C"},
-    {"question": "Qual è la capitale della Spagna?", "options": ["A. Barcellona", "B. Valencia", "C. Siviglia", "D. Madrid"], "answer": "D"},
-    {"question": "Qual è la capitale della Germania?", "options": ["A. Monaco", "B. Amburgo", "C. Berlino", "D. Francoforte"], "answer": "C"},
-    {"question": "Qual è la capitale del Portogallo?", "options": ["A. Porto", "B. Lisbona", "C. Faro", "D. Coimbra"], "answer": "B"},
-    {"question": "Qual è la capitale della Grecia?", "options": ["A. Salonicco", "B. Atene", "C. Patrasso", "D. Heraklion"], "answer": "B"},
-    {"question": "Qual è la capitale della Russia?", "options": ["A. San Pietroburgo", "B. Mosca", "C. Novosibirsk", "D. Ekaterinburg"], "answer": "B"},
-    {"question": "Qual è la capitale del Giappone?", "options": ["A. Osaka", "B. Kyoto", "C. Tokyo", "D. Hiroshima"], "answer": "C"},
-    {"question": "Qual è la capitale della Cina?", "options": ["A. Shanghai", "B. Pechino", "C. Guangzhou", "D. Shenzhen"], "answer": "B"},
-    {"question": "Qual è la capitale dell'India?", "options": ["A. Mumbai", "B. Nuova Delhi", "C. Bangalore", "D. Chennai"], "answer": "B"},
-    {"question": "Qual è la capitale del Brasile?", "options": ["A. Rio de Janeiro", "B. San Paolo", "C. Brasilia", "D. Salvador"], "answer": "C"},
-    {"question": "Qual è la capitale dell'Australia?", "options": ["A. Sydney", "B. Melbourne", "C. Canberra", "D. Brisbane"], "answer": "C"},
-    {"question": "Qual è la capitale del Canada?", "options": ["A. Toronto", "B. Vancouver", "C. Ottawa", "D. Montreal"], "answer": "C"},
-    {"question": "Qual è la capitale del Messico?", "options": ["A. Guadalajara", "B. Monterrey", "C. Città del Messico", "D. Tijuana"], "answer": "C"},
-    {"question": "Qual è la capitale dell'Argentina?", "options": ["A. Buenos Aires", "B. Cordoba", "C. Rosario", "D. Mendoza"], "answer": "A"},
-    {"question": "Qual è la capitale del Sudafrica?", "options": ["A. Johannesburg", "B. Città del Capo", "C. Pretoria", "D. Durban"], "answer": "C"},
-    {"question": "Qual è la capitale dell'Egitto?", "options": ["A. Alessandria", "B. Il Cairo", "C. Giza", "D. Luxor"], "answer": "B"},
-    {"question": "Qual è la capitale della Turchia?", "options": ["A. Istanbul", "B. Ankara", "C. Smirne", "D. Bursa"], "answer": "B"},
-    {"question": "Qual è la capitale della Svezia?", "options": ["A. Goteborg", "B. Malmo", "C. Stoccolma", "D. Uppsala"], "answer": "C"},
-    {"question": "Qual è la capitale della Norvegia?", "options": ["A. Bergen", "B. Trondheim", "C. Oslo", "D. Stavanger"], "answer": "C"}
+    {"question": "Qual è la capitale d'Italia?", "options": ["Milano", "Roma", "Napoli", "Torino"], "answer": "Roma"},
+    {"question": "Qual è la capitale della Francia?", "options": ["Marsiglia", "Lione", "Parigi", "Nizza"], "answer": "Parigi"},
+    {"question": "Qual è la capitale della Germania?", "options": ["Monaco", "Berlino", "Amburgo", "Francoforte"], "answer": "Berlino"},
+    {"question": "Qual è la capitale della Spagna?", "options": ["Barcellona", "Madrid", "Valencia", "Siviglia"], "answer": "Madrid"},
+    {"question": "Qual è la capitale del Portogallo?", "options": ["Porto", "Lisbona", "Coimbra", "Faro"], "answer": "Lisbona"},
+    {"question": "Qual è la capitale del Regno Unito?", "options": ["Liverpool", "Londra", "Manchester", "Edimburgo"], "answer": "Londra"},
+    {"question": "Qual è la capitale della Russia?", "options": ["San Pietroburgo", "Mosca", "Kazan", "Novosibirsk"], "answer": "Mosca"},
+    {"question": "Qual è la capitale della Cina?", "options": ["Shanghai", "Pechino", "Hong Kong", "Shenzhen"], "answer": "Pechino"},
+    {"question": "Qual è la capitale del Giappone?", "options": ["Osaka", "Kyoto", "Tokyo", "Hiroshima"], "answer": "Tokyo"},
+    {"question": "Qual è la capitale dell'Australia?", "options": ["Sydney", "Melbourne", "Canberra", "Brisbane"], "answer": "Canberra"},
+    {"question": "Qual è la capitale del Canada?", "options": ["Toronto", "Vancouver", "Montreal", "Ottawa"], "answer": "Ottawa"},
+    {"question": "Qual è la capitale degli Stati Uniti?", "options": ["New York", "Washington D.C.", "Los Angeles", "Chicago"], "answer": "Washington D.C."},
+    {"question": "Qual è la capitale dell'India?", "options": ["Mumbai", "Nuova Delhi", "Chennai", "Bangalore"], "answer": "Nuova Delhi"},
+    {"question": "Qual è la capitale del Brasile?", "options": ["San Paolo", "Brasilia", "Rio de Janeiro", "Salvador"], "answer": "Brasilia"},
+    {"question": "Qual è la capitale dell'Argentina?", "options": ["Cordoba", "Buenos Aires", "Rosario", "Mendoza"], "answer": "Buenos Aires"},
+    {"question": "Qual è la capitale della Turchia?", "options": ["Istanbul", "Ankara", "Izmir", "Bursa"], "answer": "Ankara"},
+    {"question": "Qual è la capitale dell'Egitto?", "options": ["Alessandria", "Il Cairo", "Luxor", "Giza"], "answer": "Il Cairo"},
+    {"question": "Qual è la capitale della Grecia?", "options": ["Salonicco", "Atene", "Patrasso", "Heraklion"], "answer": "Atene"},
+    {"question": "Qual è la capitale della Svezia?", "options": ["Malmo", "Göteborg", "Stoccolma", "Uppsala"], "answer": "Stoccolma"},
+    {"question": "Qual è la capitale della Norvegia?", "options": ["Bergen", "Oslo", "Stavanger", "Trondheim"], "answer": "Oslo"},
+    {"question": "Qual è la capitale del Messico?", "options": ["Cancún", "Città del Messico", "Guadalajara", "Monterrey"], "answer": "Città del Messico"},
+    {"question": "Qual è la capitale della Corea del Sud?", "options": ["Busan", "Seul", "Incheon", "Daegu"], "answer": "Seul"},
+    {"question": "Qual è la capitale della Svizzera?", "options": ["Zurigo", "Ginevra", "Berna", "Losanna"], "answer": "Berna"},
+    {"question": "Qual è la capitale dei Paesi Bassi?", "options": ["Rotterdam", "Amsterdam", "L'Aia", "Utrecht"], "answer": "Amsterdam"},
+    {"question": "Qual è la capitale dell'Austria?", "options": ["Salisburgo", "Vienna", "Graz", "Linz"], "answer": "Vienna"},
+    {"question": "Qual è la capitale della Polonia?", "options": ["Cracovia", "Varsavia", "Danzica", "Poznań"], "answer": "Varsavia"},
+    {"question": "Qual è la capitale del Sudafrica?", "options": ["Johannesburg", "Pretoria", "Durban", "Città del Capo"], "answer": "Pretoria"},
+    {"question": "Qual è la capitale della Nuova Zelanda?", "options": ["Auckland", "Wellington", "Christchurch", "Hamilton"], "answer": "Wellington"},
+    {"question": "Qual è la capitale della Corea del Nord?", "options": ["Pyongyang", "Seul", "Busan", "Incheon"], "answer": "Pyongyang"},
+    {"question": "Qual è la capitale del Vietnam?", "options": ["Ho Chi Minh", "Hanoi", "Da Nang", "Hue"], "answer": "Hanoi"},
+    {"question": "Qual è la capitale della Finlandia?", "options": ["Tampere", "Turku", "Helsinki", "Oulu"], "answer": "Helsinki"},
+    {"question": "Qual è la capitale della Tailandia?", "options": ["Chiang Mai", "Bangkok", "Phuket", "Pattaya"], "answer": "Bangkok"},
+    {"question": "Qual è la capitale dell'Irlanda?", "options": ["Cork", "Dublino", "Galway", "Limerick"], "answer": "Dublino"},
+    {"question": "Qual è la capitale della Norvegia?", "options": ["Oslo", "Bergen", "Stavanger", "Tromsø"], "answer": "Oslo"}
 ]
+
 
 questions_sport = [
-    {"question": "Qual è lo sport più praticato al mondo?", "options": ["A. Calcio", "B. Basket", "C. Tennis", "D. Cricket"], "answer": "A"},
-    {"question": "In quale anno si sono tenuti i primi Giochi Olimpici moderni?", "options": ["A. 1896", "B. 1900", "C. 1924", "D. 1936"], "answer": "A"},
-    {"question": "Chi ha vinto il maggior numero di titoli del Grande Slam nel tennis?", "options": ["A. Roger Federer", "B. Rafael Nadal", "C. Novak Djokovic", "D. Pete Sampras"], "answer": "C"},
-    {"question": "Qual è il paese con il maggior numero di Coppe del Mondo di calcio?", "options": ["A. Brasile", "B. Germania", "C. Italia", "D. Argentina"], "answer": "A"},
-    {"question": "Qual è il record mondiale dei 100 metri piani?", "options": ["A. 9.58 secondi", "B. 9.63 secondi", "C. 9.69 secondi", "D. 9.72 secondi"], "answer": "A"},
-    {"question": "Chi ha vinto il maggior numero di Tour de France?", "options": ["A. Lance Armstrong", "B. Eddy Merckx", "C. Bernard Hinault", "D. Miguel Indurain"], "answer": "B"},
-    {"question": "Qual è il paese con il maggior numero di medaglie olimpiche?", "options": ["A. Stati Uniti", "B. Russia", "C. Cina", "D. Germania"], "answer": "A"},
-    {"question": "Qual è il record mondiale del salto in lungo?", "options": ["A. 8.90 metri", "B. 8.95 metri", "C. 8.99 metri", "D. 9.00 metri"], "answer": "B"},
-    {"question": "Chi ha vinto il maggior numero di titoli NBA?", "options": ["A. Michael Jordan", "B. LeBron James", "C. Bill Russell", "D. Kareem Abdul-Jabbar"], "answer": "C"},
-    {"question": "Qual è il record mondiale del lancio del giavellotto?", "options": ["A. 98.48 metri", "B. 98.52 metri", "C. 98.58 metri", "D. 98.62 metri"], "answer": "C"},
-    {"question": "Chi ha vinto il maggior numero di titoli di Formula 1?", "options": ["A. Michael Schumacher", "B. Lewis Hamilton", "C. Ayrton Senna", "D. Alain Prost"], "answer": "A"},
-    {"question": "Qual è il record mondiale dei 200 metri piani?", "options": ["A. 19.19 secondi", "B. 19.26 secondi", "C. 19.32 secondi", "D. 19.40 secondi"], "answer": "A"},
-    {"question": "Chi ha vinto il maggior numero di titoli di Wimbledon?", "options": ["A. Roger Federer", "B. Pete Sampras", "C. Novak Djokovic", "D. Rafael Nadal"], "answer": "A"},
-    {"question": "Qual è il record mondiale del salto con l'asta?", "options": ["A. 6.14 metri", "B. 6.16 metri", "C. 6.18 metri", "D. 6.20 metri"], "answer": "D"},
-    {"question": "Chi ha vinto il maggior numero di titoli di golf?", "options": ["A. Jack Nicklaus", "B. Tiger Woods", "C. Arnold Palmer", "D. Gary Player"], "answer": "A"},
-    {"question": "Qual è il record mondiale dei 400 metri piani?", "options": ["A. 43.03 secondi", "B. 43.18 secondi", "C. 43.29 secondi", "D. 43.45 secondi"], "answer": "A"},
-    {"question": "Chi ha vinto il maggior numero di titoli di boxe?", "options": ["A. Muhammad Ali", "B. Mike Tyson", "C. Floyd Mayweather", "D. Manny Pacquiao"], "answer": "C"},
-    {"question": "Qual è il record mondiale del sollevamento pesi?", "options": ["A. 263 kg", "B. 266 kg", "C. 270 kg", "D. 273 kg"], "answer": "D"},
-    {"question": "Chi ha vinto il maggior numero di titoli di ciclismo su pista?", "options": ["A. Chris Hoy", "B. Bradley Wiggins", "C. Mark Cavendish", "D. Jason Kenny"], "answer": "D"},
-    {"question": "Qual è il record mondiale del salto triplo?", "options": ["A. 18.29 metri", "B. 18.35 metri", "C. 18.39 metri", "D. 18.43 metri"], "answer": "A"}
+    {"question": "In quale sport si usa una racchetta per colpire una pallina sopra una rete?", "options": ["Calcio", "Tennis", "Pallavolo", "Rugby"], "answer": "Tennis"},
+    {"question": "Qual è il numero massimo di giocatori in una squadra di calcio in campo?", "options": ["9", "10", "11", "12"], "answer": "11"},
+    {"question": "In quale sport si cerca di segnare punti lanciando una palla in un canestro?", "options": ["Pallacanestro", "Pallamano", "Tennis", "Pallanuoto"], "answer": "Pallacanestro"},
+    {"question": "Qual è il nome del torneo di tennis che si gioca sull'erba a Londra?", "options": ["Roland Garros", "US Open", "Wimbledon", "Australian Open"], "answer": "Wimbledon"},
+    {"question": "In quale sport si usa una mazza per colpire una palla lanciata da un avversario?", "options": ["Cricket", "Baseball", "Golf", "Hockey su ghiaccio"], "answer": "Baseball"},
+    {"question": "Quale squadra ha vinto il maggior numero di titoli della Champions League?", "options": ["Barcellona", "Bayern Monaco", "Real Madrid", "Manchester United"], "answer": "Real Madrid"},
+    {"question": "In quale sport si pratica il 'servizio' come azione iniziale?", "options": ["Tennis", "Pallavolo", "Badminton", "Tutte le precedenti"], "answer": "Tutte le precedenti"},
+    {"question": "Qual è il nome dello stadio principale del Barcellona FC?", "options": ["Santiago Bernabéu", "Camp Nou", "Old Trafford", "San Siro"], "answer": "Camp Nou"},
+    {"question": "In quale sport si usa una palla ovale?", "options": ["Rugby", "Baseball", "Pallanuoto", "Hockey su prato"], "answer": "Rugby"},
+    {"question": "Qual è la durata standard di una partita di calcio?", "options": ["80 minuti", "90 minuti", "70 minuti", "100 minuti"], "answer": "90 minuti"},
+    {"question": "In quale sport si gioca con una tavola su onde marine?", "options": ["Surf", "Windsurf", "Kayak", "Vela"], "answer": "Surf"},
+    {"question": "Chi è noto come 'il re del calcio'?", "options": ["Diego Maradona", "Lionel Messi", "Pelé", "Cristiano Ronaldo"], "answer": "Pelé"},
+    {"question": "In quale sport si utilizza un bastone per spingere un disco?", "options": ["Hockey su prato", "Hockey su ghiaccio", "Cricket", "Baseball"], "answer": "Hockey su ghiaccio"},
+    {"question": "Qual è la distanza di una maratona?", "options": ["35 km", "42,195 km", "50 km", "40 km"], "answer": "42,195 km"},
+    {"question": "Qual è il colore della maglia del vincitore del Tour de France?", "options": ["Rosso", "Verde", "Giallo", "Blu"], "answer": "Giallo"},
+    {"question": "In quale sport si pratica il 'doppio misto'?", "options": ["Badminton", "Tennis", "Tennis da tavolo", "Tutti i precedenti"], "answer": "Tutti i precedenti"},
+    {"question": "Quale nazione ha ospitato le Olimpiadi del 2020 (disputate nel 2021)?", "options": ["Cina", "Brasile", "Giappone", "Italia"], "answer": "Giappone"},
+    {"question": "In quale sport si gareggia nei 100 metri piani?", "options": ["Nuoto", "Atletica leggera", "Ciclismo", "Sci di fondo"], "answer": "Atletica leggera"},
+    {"question": "Qual è lo sport praticato da Michael Phelps?", "options": ["Atletica", "Nuoto", "Ciclismo", "Tennis"], "answer": "Nuoto"},
+    {"question": "In quale sport si usa il termine 'ace'?", "options": ["Pallavolo", "Tennis", "Golf", "Baseball"], "answer": "Tennis"},
+    {"question": "In quale sport si usa una rete e una palla più piccola rispetto al calcio?", "options": ["Pallavolo", "Tennis", "Badminton", "Pallamano"], "answer": "Pallavolo"},
+    {"question": "Chi è considerato il miglior giocatore di basket della NBA di tutti i tempi?", "options": ["Michael Jordan", "LeBron James", "Kobe Bryant", "Shaquille O'Neal"], "answer": "Michael Jordan"},
+    {"question": "Quale paese ha ospitato i Mondiali di calcio 2006?", "options": ["Francia", "Germania", "Italia", "Brasile"], "answer": "Germania"},
+    {"question": "Qual è lo sport nazionale del Giappone?", "options": ["Judo", "Sumo", "Karate", "Baseball"], "answer": "Sumo"},
+    {"question": "Quante medaglie d'oro ha vinto Usain Bolt nella sua carriera olimpica?", "options": ["6", "8", "10", "7"], "answer": "8"},
+    {"question": "Quale sport usa un campo chiamato 'diamante'?", "options": ["Cricket", "Baseball", "Pallacanestro", "Pallavolo"], "answer": "Baseball"},
+    {"question": "Chi ha vinto il primo titolo di Formula 1?", "options": ["Lewis Hamilton", "Juan Manuel Fangio", "Nino Farina", "Michael Schumacher"], "answer": "Nino Farina"},
+    {"question": "In quale sport è famoso Pelé?", "options": ["Basket", "Cricket", "Calcio", "Tennis"], "answer": "Calcio"},
+    {"question": "Quale squadra di calcio italiana è nota come 'La Vecchia Signora'?", "options": ["Inter", "Milan", "Juventus", "Roma"], "answer": "Juventus"},
+    {"question": "Quale sport si pratica sul ghiaccio con pattini?", "options": ["Hockey su ghiaccio", "Curling", "Pattinaggio di velocità", "Bobsleigh"], "answer": "Hockey su ghiaccio"}
 ]
 
+
 questions_storia = [
-    {"question": "In che anno è caduto il Muro di Berlino?", "options": ["A. 1987", "B. 1989", "C. 1991", "D. 1993"], "answer": "B"},
-    {"question": "Chi era il presidente degli Stati Uniti durante la Guerra Civile?", "options": ["A. George Washington", "B. Thomas Jefferson", "C. Abraham Lincoln", "D. Theodore Roosevelt"], "answer": "C"},
-    {"question": "Quale evento ha scatenato la Prima Guerra Mondiale?", "options": ["A. L'assassinio dell'arciduca Francesco Ferdinando", "B. L'invasione della Polonia", "C. La Rivoluzione Russa", "D. La Conferenza di Versailles"], "answer": "A"},
-    {"question": "Chi ha scoperto l'America?", "options": ["A. Cristoforo Colombo", "B. Amerigo Vespucci", "C. Ferdinando Magellano", "D. Vasco da Gama"], "answer": "A"},
-    {"question": "In che anno è iniziata la Seconda Guerra Mondiale?", "options": ["A. 1937", "B. 1938", "C. 1939", "D. 1940"], "answer": "C"},
-    {"question": "Chi era il primo imperatore di Roma?", "options": ["A. Giulio Cesare", "B. Augusto", "C. Nerone", "D. Traiano"], "answer": "B"},
-    {"question": "Quale rivoluzione ha portato alla caduta della monarchia francese?", "options": ["A. Rivoluzione Americana", "B. Rivoluzione Francese", "C. Rivoluzione Russa", "D. Rivoluzione Industriale"], "answer": "B"},
-    {"question": "Chi ha scritto la Dichiarazione di Indipendenza degli Stati Uniti?", "options": ["A. George Washington", "B. Benjamin Franklin", "C. Thomas Jefferson", "D. John Adams"], "answer": "C"},
-    {"question": "In che anno è stata fondata l'ONU?", "options": ["A. 1943", "B. 1945", "C. 1947", "D. 1949"], "answer": "B"},
-    {"question": "Chi era il leader dell'Unione Sovietica durante la Seconda Guerra Mondiale?", "options": ["A. Lenin", "B. Stalin", "C. Krusciov", "D. Breznev"], "answer": "B"},
-    {"question": "Quale paese ha costruito la Grande Muraglia?", "options": ["A. Giappone", "B. Corea", "C. Cina", "D. Mongolia"], "answer": "C"},
-    {"question": "Chi era il re d'Inghilterra durante la Guerra dei Cent'anni?", "options": ["A. Enrico V", "B. Edoardo III", "C. Riccardo II", "D. Giovanni Senza Terra"], "answer": "B"},
-    {"question": "Quale evento ha segnato l'inizio del Medioevo?", "options": ["A. Caduta di Roma", "B. Invasione dei Normanni", "C. Battaglia di Hastings", "D. Scoperta dell'America"], "answer": "A"},
-    {"question": "Chi ha guidato la Rivoluzione Russa del 1917?", "options": ["A. Lenin", "B. Trotsky", "C. Stalin", "D. Kerensky"], "answer": "A"},
-    {"question": "In che anno è stata firmata la Magna Carta?", "options": ["A. 1215", "B. 1225", "C. 1235", "D. 1245"], "answer": "A"},
-    {"question": "Chi era il presidente degli Stati Uniti durante la Grande Depressione?", "options": ["A. Herbert Hoover", "B. Franklin D. Roosevelt", "C. Harry S. Truman", "D. Dwight D. Eisenhower"], "answer": "B"},
-    {"question": "Quale paese ha lanciato il primo satellite artificiale nello spazio?", "options": ["A. Stati Uniti", "B. Unione Sovietica", "C. Cina", "D. Giappone"], "answer": "B"},
-    {"question": "Chi era il leader della Germania nazista durante la Seconda Guerra Mondiale?", "options": ["A. Adolf Hitler", "B. Heinrich Himmler", "C. Joseph Goebbels", "D. Hermann Göring"], "answer": "A"},
-    {"question": "Quale evento ha segnato la fine della Seconda Guerra Mondiale?", "options": ["A. Battaglia di Stalingrado", "B. Sbarco in Normandia", "C. Bombardamento di Hiroshima e Nagasaki", "D. Conferenza di Yalta"], "answer": "C"},
-    {"question": "Chi era il primo ministro britannico durante la Seconda Guerra Mondiale?", "options": ["A. Winston Churchill", "B. Neville Chamberlain", "C. Clement Attlee", "D. Anthony Eden"], "answer": "A"}
+    {"question": "In quale anno Cristoforo Colombo ha scoperto l'America?", "options": ["1492", "1500", "1453", "1498"], "answer": "1492"},
+    {"question": "Chi è stato il primo imperatore romano?", "options": ["Nerone", "Traiano", "Augusto", "Cesare"], "answer": "Augusto"},
+    {"question": "Quale evento storico è associato alla data 1789?", "options": ["La Rivoluzione Francese", "La scoperta dell'America", "La caduta dell'Impero Romano", "L'Unificazione d'Italia"], "answer": "La Rivoluzione Francese"},
+    {"question": "Chi ha dipinto la Cappella Sistina?", "options": ["Leonardo da Vinci", "Raffaello", "Michelangelo", "Donatello"], "answer": "Michelangelo"},
+    {"question": "Quale città è stata distrutta dall'eruzione del Vesuvio nel 79 d.C.?", "options": ["Roma", "Pompei", "Napoli", "Ercolano"], "answer": "Pompei"},
+    {"question": "Chi era il leader dei Nazisti durante la Seconda Guerra Mondiale?", "options": ["Benito Mussolini", "Adolf Hitler", "Winston Churchill", "Franklin D. Roosevelt"], "answer": "Adolf Hitler"},
+    {"question": "Chi ha scritto 'Il Principe'?", "options": ["Dante Alighieri", "Machiavelli", "Boccaccio", "Petrarca"], "answer": "Machiavelli"},
+    {"question": "In quale anno è stata unificata l'Italia?", "options": ["1848", "1861", "1870", "1859"], "answer": "1861"},
+    {"question": "Chi è stato il primo presidente degli Stati Uniti?", "options": ["Thomas Jefferson", "George Washington", "Abraham Lincoln", "John Adams"], "answer": "George Washington"},
+    {"question": "Quale trattato ha posto fine alla Prima Guerra Mondiale?", "options": ["Trattato di Versailles", "Trattato di Parigi", "Trattato di Vienna", "Trattato di Tordesillas"], "answer": "Trattato di Versailles"},
+    {"question": "Chi era il faraone dell'Antico Egitto noto per la sua maschera d'oro?", "options": ["Ramses II", "Tutankhamon", "Cleopatra", "Akhenaton"], "answer": "Tutankhamon"},
+    {"question": "Qual è stata la causa principale della Guerra Fredda?", "options": ["Conflitto religioso", "Competizione tra USA e URSS", "Colonialismo", "Espansione dell'Impero Britannico"], "answer": "Competizione tra USA e URSS"},
+    {"question": "Quale civiltà ha costruito Machu Picchu?", "options": ["Maya", "Inca", "Aztechi", "Olmechi"], "answer": "Inca"},
+    {"question": "Chi ha guidato la spedizione che ha circumnavigato il globo per la prima volta?", "options": ["Cristoforo Colombo", "Vasco da Gama", "Ferdinando Magellano", "Amerigo Vespucci"], "answer": "Ferdinando Magellano"},
+    {"question": "Chi ha sconfitto Napoleone a Waterloo?", "options": ["Wellington", "Blücher", "Nelson", "Giuseppe Garibaldi"], "answer": "Wellington"},
+    {"question": "Chi ha inventato la stampa a caratteri mobili?", "options": ["Galileo Galilei", "Gutenberg", "Leonardo da Vinci", "Isaac Newton"], "answer": "Gutenberg"},
+    {"question": "Quale civiltà antica ha costruito le piramidi?", "options": ["Etruschi", "Egizi", "Romani", "Maya"], "answer": "Egizi"},
+    {"question": "In quale anno è caduto il Muro di Berlino?", "options": ["1980", "1989", "1991", "1979"], "answer": "1989"},
+    {"question": "Chi ha guidato l'Unione Sovietica durante la Seconda Guerra Mondiale?", "options": ["Vladimir Lenin", "Iosif Stalin", "Nikita Krusciov", "Leon Trotsky"], "answer": "Iosif Stalin"},
+    {"question": "Quale popolo antico ha fondato Roma, secondo la leggenda?", "options": ["Greci", "Etruschi", "Romani", "Troiani"], "answer": "Troiani"},
+    {"question": "In quale anno è caduto l'Impero Romano d'Occidente?", "options": ["476", "410", "1453", "1204"], "answer": "476"},
+    {"question": "Chi era il condottiero cartaginese che attraversò le Alpi con gli elefanti?", "options": ["Scipione", "Annibale", "Cesare", "Ciro il Grande"], "answer": "Annibale"},
+    {"question": "Quale re inglese ebbe sei mogli?", "options": ["Enrico VIII", "Giorgio III", "Carlo I", "Giacomo II"], "answer": "Enrico VIII"},
+    {"question": "Chi ha scritto la 'Divina Commedia'?", "options": ["Dante Alighieri", "Boccaccio", "Petrarca", "Ariosto"], "answer": "Dante Alighieri"},
+    {"question": "In quale battaglia Napoleone Bonaparte fu sconfitto definitivamente?", "options": ["Waterloo", "Austerlitz", "Lipsia", "Trafalgar"], "answer": "Waterloo"},
+    {"question": "In quale anno è stata firmata la Dichiarazione d'Indipendenza degli Stati Uniti?", "options": ["1776", "1789", "1791", "1812"], "answer": "1776"},
+    {"question": "Chi ha scoperto la teoria della relatività?", "options": ["Isaac Newton", "Albert Einstein", "Nikola Tesla", "Galileo Galilei"], "answer": "Albert Einstein"},
+    {"question": "Quale civiltà costruì la Grande Muraglia Cinese?", "options": ["Mongoli", "Cinesi", "Persiani", "Romani"], "answer": "Cinesi"},
+    {"question": "Chi era il leader della Rivoluzione Russa del 1917?", "options": ["Lenin", "Stalin", "Trotsky", "Kerenskij"], "answer": "Lenin"},
+    {"question": "Quale evento ha segnato l'inizio della Seconda Guerra Mondiale?", "options": ["L'invasione della Polonia", "L'attacco a Pearl Harbor", "La marcia su Roma", "La caduta di Berlino"], "answer": "L'invasione della Polonia"}
+]
+questions_nutrizione = [
+    {"question": "Qual è la vitamina che si ottiene principalmente dall'esposizione al sole?", "options": ["Vitamina A", "Vitamina B12", "Vitamina C", "Vitamina D"], "answer": "Vitamina D"},
+    {"question": "Quale minerale è essenziale per la formazione delle ossa?", "options": ["Ferro", "Calcio", "Magnesio", "Zinco"], "answer": "Calcio"},
+    {"question": "Qual è la principale fonte di energia per il corpo umano?", "options": ["Proteine", "Carboidrati", "Grassi", "Vitamine"], "answer": "Carboidrati"},
+    {"question": "Quale vitamina è essenziale per la coagulazione del sangue?", "options": ["Vitamina A", "Vitamina K", "Vitamina E", "Vitamina D"], "answer": "Vitamina K"},
+    {"question": "Quale nutriente è essenziale per la crescita e la riparazione dei tessuti?", "options": ["Carboidrati", "Proteine", "Grassi", "Fibre"], "answer": "Proteine"},
+    {"question": "Quale vitamina è essenziale per la vista?", "options": ["Vitamina A", "Vitamina B6", "Vitamina C", "Vitamina D"], "answer": "Vitamina A"},
+    {"question": "Quale minerale è importante per il trasporto dell'ossigeno nel sangue?", "options": ["Calcio", "Ferro", "Magnesio", "Potassio"], "answer": "Ferro"},
+    {"question": "Quale vitamina è essenziale per il sistema immunitario?", "options": ["Vitamina A", "Vitamina B12", "Vitamina C", "Vitamina D"], "answer": "Vitamina C"},
+    {"question": "Quale nutriente è essenziale per la produzione di ormoni?", "options": ["Carboidrati", "Proteine", "Grassi", "Fibre"], "answer": "Grassi"},
+    {"question": "Quale vitamina è essenziale per la salute della pelle?", "options": ["Vitamina A", "Vitamina B6", "Vitamina C", "Vitamina E"], "answer": "Vitamina E"},
+    {"question": "Quale minerale è importante per la funzione muscolare?", "options": ["Calcio", "Ferro", "Magnesio", "Zinco"], "answer": "Magnesio"},
+    {"question": "Quale vitamina è essenziale per la sintesi del collagene?", "options": ["Vitamina A", "Vitamina B12", "Vitamina C", "Vitamina D"], "answer": "Vitamina C"},
+    {"question": "Quale nutriente è essenziale per la regolazione della temperatura corporea?", "options": ["Carboidrati", "Proteine", "Grassi", "Acqua"], "answer": "Acqua"},
+    {"question": "Quale vitamina è essenziale per la produzione di energia?", "options": ["Vitamina A", "Vitamina B12", "Vitamina C", "Vitamina D"], "answer": "Vitamina B12"},
+    {"question": "Quale minerale è importante per la salute dei denti?", "options": ["Calcio", "Ferro", "Magnesio", "Fluoro"], "answer": "Fluoro"},
+    {"question": "Quale vitamina è essenziale per la funzione cerebrale?", "options": ["Vitamina A", "Vitamina B6", "Vitamina C", "Vitamina D"], "answer": "Vitamina B6"},
+    {"question": "Quale nutriente è essenziale per la sintesi delle proteine?", "options": ["Carboidrati", "Proteine", "Grassi", "Aminoacidi"], "answer": "Aminoacidi"},
+    {"question": "Quale vitamina è essenziale per la salute del cuore?", "options": ["Vitamina A", "Vitamina B12", "Vitamina C", "Vitamina E"], "answer": "Vitamina E"},
+    {"question": "Quale minerale è importante per la regolazione della pressione sanguigna?", "options": ["Calcio", "Ferro", "Magnesio", "Potassio"], "answer": "Potassio"},
+    {"question": "Quale vitamina è essenziale per la prevenzione delle malattie croniche?", "options": ["Vitamina A", "Vitamina B12", "Vitamina C", "Vitamina D"], "answer": "Vitamina D"}
+]
+
+questions_matematica = [
+    {"question": "Qual è il risultato di 5 + 3?", "options": ["6", "7", "8", "9"], "answer": "8"},
+    {"question": "Qual è il risultato di 12 - 4?", "options": ["6", "7", "8", "9"], "answer": "8"},
+    {"question": "Qual è il risultato di 3 x 4?", "options": ["10", "11", "12", "13"], "answer": "12"},
+    {"question": "Qual è il risultato di 16 ÷ 4?", "options": ["2", "3", "4", "5"], "answer": "4"},
+    {"question": "Qual è il valore di π (pi greco) approssimato a due decimali?", "options": ["3.12", "3.14", "3.16", "3.18"], "answer": "3.14"},
+    {"question": "Qual è il risultato di 2^3?", "options": ["6", "7", "8", "9"], "answer": "8"},
+    {"question": "Qual è la radice quadrata di 81?", "options": ["7", "8", "9", "10"], "answer": "9"},
+    {"question": "Qual è il risultato di 15 + 6?", "options": ["20", "21", "22", "23"], "answer": "21"},
+    {"question": "Qual è il risultato di 25 - 7?", "options": ["16", "17", "18", "19"], "answer": "18"},
+    {"question": "Qual è il risultato di 6 x 7?", "options": ["40", "41", "42", "43"], "answer": "42"},
+    {"question": "Qual è il risultato di 36 ÷ 6?", "options": ["5", "6", "7", "8"], "answer": "6"},
+    {"question": "Qual è il risultato di 4^2?", "options": ["14", "15", "16", "17"], "answer": "16"},
+    {"question": "Qual è la radice quadrata di 49?", "options": ["6", "7", "8", "9"], "answer": "7"},
+    {"question": "Qual è il risultato di 9 + 8?", "options": ["16", "17", "18", "19"], "answer": "17"},
+    {"question": "Qual è il risultato di 20 - 5?", "options": ["14", "15", "16", "17"], "answer": "15"},
+    {"question": "Qual è il risultato di 8 x 5?", "options": ["38", "39", "40", "41"], "answer": "40"},
+    {"question": "Qual è il risultato di 48 ÷ 8?", "options": ["5", "6", "7", "8"], "answer": "6"},
+    {"question": "Qual è il risultato di 3^3?", "options": ["26", "27", "28", "29"], "answer": "27"},
+    {"question": "Qual è la radice quadrata di 64?", "options": ["7", "8", "9", "10"], "answer": "8"},
+    {"question": "Qual è il risultato di 7 + 6?", "options": ["12", "13", "14", "15"], "answer": "13"}
 ]
 
 @app.route('/')
@@ -84,11 +165,15 @@ def start():
 @app.route('/quiz/<category>')
 def quiz(category):
     if category == 'capitali':
-        session['questions'] = random.sample(questions_capitali, len(questions_capitali))
+        session['questions'] = random.sample(questions_capitali, 10)
     elif category == 'sport':
-        session['questions'] = random.sample(questions_sport, len(questions_sport))
+        session['questions'] = random.sample(questions_sport, 10)
     elif category == 'storia':
-        session['questions'] = random.sample(questions_storia, len(questions_storia))
+        session['questions'] = random.sample(questions_storia, 10)
+    elif category == 'nutrizione':
+        session['questions'] = random.sample(questions_nutrizione, 10)
+    elif category == 'matematica':
+        session['questions'] = random.sample(questions_matematica, 10)
     else:
         return redirect(url_for('welcome'))
 
