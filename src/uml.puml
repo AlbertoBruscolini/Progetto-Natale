@@ -1,0 +1,55 @@
+@startuml
+class FlaskApp {
+  - app: Flask
+  - secret_key: str
+  --
+  -@app.route('/'):
+  
+  + welcome()
+  + start()
+  + quiz(category)
+  + quiz_question()
+  + result()
+  + check_answers()
+}
+
+class WelcomeHTML {
+  - title: "Benvenuto al Quiz"
+  - start button: "Inizia il Quiz"
+}
+
+class CategoriesHTML {
+  - title: "Seleziona una Categoria"
+  - buttons: ["Capitali", "Sport", "Storia", "Nutrizione", "Matematica"]
+}
+
+class QuizHTML {
+  - question: str
+  - options: list
+  - submit button: "Invia Risposta"
+}
+
+class ResultHTML {
+  - title: "Risultati"
+  - score: int
+  - total: int
+  - buttons: ["Torna alla Home", "Mostra le risposte giuste"]
+}
+
+class CheckAnswersHTML {
+  - title: "Risposte Esatte"
+  - answers: list
+  - button: "Torna alla Home"
+}
+
+class MainHTML {
+  - main.html
+}
+
+FlaskApp --> WelcomeHTML
+FlaskApp --> CategoriesHTML
+FlaskApp --> QuizHTML
+FlaskApp --> ResultHTML
+FlaskApp --> CheckAnswersHTML
+FlaskApp --> MainHTML
+@enduml
